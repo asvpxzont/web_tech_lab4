@@ -4,33 +4,19 @@ $str = (string)$_POST['inputstr'];
 
 function isitabbr ($word)
 {
-        $flag = True;
-        for ($i=0;$i<strlen($word);$i++)
-                {
-                if ($word[$i] < 'A' or $word[$i] > 'Z') $flag = False;
-                }
-        return $flag;
+        if (preg_match('/^[A-Z]+$/',$word)>0) return true;
+        else return false;
 }
-
 function IsItNumber ($word)
 {
-        $flag = True;
-        for ($i=0;$i<strlen($word);$i++)
-                {
-                if ($word[$i] < '0' or $word[$i] > '9') $flag = false;
-                }
-        return $flag;
+        if (preg_match('/^[0-9]+$/',$word)>0) return true;
+        else return false;
 }
 
 function IsItWord ($word)
 {
-        $flag = True;
-        for ($i=1;$i<strlen($word);$i++)
-                {
-                if ($word[$i] < 'a' or $word[$i] > 'z') $flag = false;
-                }
-        if ($word[0]>'A' and $word[0]<'Z' and $flag) return True;
-        else return False;
+       if (preg_match('/^[A-Z][a-z]+$/',$word)>0) return true;
+        else return false;
 }
 
 $words = explode(" ",$str);
